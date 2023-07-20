@@ -16,3 +16,21 @@ paths:
       responses:
         "200":
           description: get books data
+    post:
+      tags:
+        - Books
+      requestBody:
+        description: create new book
+        required: true
+        content:
+          application/json:
+            schema:
+              type: 'object'
+              properties:
+                title:
+                  type: string
+                author:
+                  type: string
+      responses:
+        '201':
+          description: create new book successfully
