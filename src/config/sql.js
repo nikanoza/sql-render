@@ -9,21 +9,14 @@ const pool = new Pool({
     port: 5432,
 });
 
-export const createBooksTable = async () => {
-    try {
-        await pool.query(`
-        CREATE TABLE IF NOT EXISTS books (
-          id SERIAL PRIMARY KEY,
-          title TEXT,
-          author TEXT
-        );
-      `)
-      console.log('Table "books" created successfully!');
-    } catch (error) {
-        console.error('Error creating table:', error);
-    } finally {
-        pool.end();
-    };
-}
+export const createTable = () => {
+    return pool.query(`
+      CREATE TABLE IF NOT EXISTS books (
+        id SERIAL PRIMARY KEY,
+        title TEXT,
+        author TEXT
+      );
+    `);
+  }
 
 export default pool;

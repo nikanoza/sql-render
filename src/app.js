@@ -1,5 +1,5 @@
 import express from "express";
-import pool, { createBooksTable } from "./config/sql.js";
+import pool, { createTable } from "./config/sql.js";
 
 const app = express();
 
