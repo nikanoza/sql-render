@@ -1,5 +1,6 @@
 import express from "express";
 import pool, { createTable } from "./config/sql.js";
+import swagger from "./middlewares/swagger-middleware.js";
 
 const app = express();
 
@@ -14,7 +15,7 @@ async function initialize() {
   }
   
   function startServer() {
-    app.get('/books', async (req, res) => {
+    app.get('/api/books', async (req, res) => {
       try {
         const queryResult = await pool.query('SELECT * FROM books');
         const books = queryResult.rows;
@@ -24,6 +25,8 @@ async function initialize() {
         res.status(500).send('Error fetching books');
       }
     });
+
+    app.use("/", ...swagger);
   
     app.listen(3000);
   }

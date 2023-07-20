@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: Books
+  description: Books API
+  version: 0.1.9
+servers:
+  - url: https://sql-render.onrender.com/api
+    description: production server
+  - url: http://localhost:3000/api
+    description: local server
+paths:
+  /books:
+    get:
+      tags:
+        - Books
+      responses:
+        "200":
+          description: get books data
