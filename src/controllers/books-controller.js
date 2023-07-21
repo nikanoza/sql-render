@@ -32,3 +32,19 @@ export const addBook = async (req, res) => {
     res.status(500).send("Error inserting book");
   }
 };
+
+export const deleteBook = async (req, res) => {
+  try {
+    const id = +req.params.id;
+
+    const queryResult = await pool.query("DELETE FROM books where id = $1", [
+      id,
+    ]);
+
+    const books = queryResult.rows;
+    return res.json(books);
+  } catch (err) {
+    console.error("Error fetching books:", err);
+    return res.status(500).send("Error fetching books");
+  }
+};
