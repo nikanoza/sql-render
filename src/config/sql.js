@@ -1,22 +1,25 @@
-import pkg from 'pg';
+import pkg from "pg";
+import dotenv from "dotenv";
 const { Pool } = pkg;
 
+dotenv.config();
+
 const pool = new Pool({
-    user: 'nikanoza',
-    host: 'dpg-cisjbt95rnujejpl7vsg-a',
-    database: 'books_2y3i',
-    password: 'DkOcARFxwaGn9lKlmqz45Aazswe82yIN',
-    port: 5432,
+  user: process.env.POSTGRE_USER,
+  host: process.env.POSTGRE_HOST,
+  database: process.env.POSTGRE_DATABASE,
+  password: process.env.POSTGRE_PASSWORD,
+  port: process.env.POSTGRE_PORT,
 });
 
 export const createTable = () => {
-    return pool.query(`
+  return pool.query(`
       CREATE TABLE IF NOT EXISTS books (
         id SERIAL PRIMARY KEY,
         title TEXT,
         author TEXT
       );
     `);
-  }
+};
 
 export default pool;
